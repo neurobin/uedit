@@ -1,4 +1,5 @@
 #Keyboard Shortcuts
+
 ## Line Operations
 
 | Windows/Linux                  | Mac                            | Action                         |
@@ -85,8 +86,8 @@
 | Ctrl-R | Command-Option-F | Replace |
 | Ctrl-K | Command-G | Find next |
 | Ctrl-Shift-K | Command-Shift-G | Find previous |
-  
-  
+
+
 ## Folding
 
 | Windows/Linux                  | Mac                            | Action                         |
@@ -117,3 +118,5 @@
 | Ctrl-Alt-E | --- | Macros recording |
 | Delete | --- | Delete |
 | --- | Ctrl-L | Center selection |
+
+
