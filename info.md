@@ -1,3 +1,30 @@
+<p>This is a tiny attempt to develop a Universal Text Editor.</p>
+
+<h1>Usage:</h1>
+<p>The salient feature is the custom buttons. A custom button can be defined to do various types of text manipulation.</p>
+<p>For example:</p>
+<ol>
+<li>
+<p>If the <kbd class="button">General</kbd> button has a <code>start</code> value <code>&lt;span class="quote"&gt;</code> and <code>end</code> value of <code>&lt;/span&gt;</code>
+then by clicking it you can simply enter the whole string as <code>start</code> <code>end</code> or if you perform this action on
+a selected text, it will replace the text with <code>&lt;span class="quote"&gt;text&lt;/span&gt;</code> i.e <code>start</code>text<code>end</code></p>
+</li>
+<li>
+<p>If you define the <code>start</code> value with <code>&lt;-- </code> and <code>end</code> value with <code> --&gt;</code>, you will get HTML Comment.</p>
+</li>
+<li>
+<p>If you define the <code>start</code> value with <code>//</code> and leave <code>end</code> empty, you will get single line comment which is the same for several languages.</p>
+</li>
+<li>
+<p>If you define the start value with <code>/*</code> and end value with <code>*/</code>, you get a multiline comment.</p>
+</li>
+<li>
+<p>You can put your code snippet in the <code>start</code> and <code>end</code> boxes and insert them into editor by simply clicking on the corresponding button.</p>
+</li>
+<li>You can even put an entire file content into those two boxes and insert them anywhere in the editor by simple button click.</li>
+</ol>	
+
+<div id="kbd-shortcuts"><br></div>
 #Keyboard Shortcuts
 
 ## Line Operations
@@ -120,3 +147,52 @@
 | --- | Ctrl-L | Center selection |
 
 
+<div id="btn-valid-markups"></div>
+#Markups In Button Names!!
+
+You can use HTML Markups in custom button name. That means you get to design your own custom button with
+HTML Markup. For example, if you put `<b>buttonName</b>` as the button name then your button will
+show with text <b>buttonName</b> bolded. You can put inline styling as well. The funny thing is, you can even put
+JavaScript code in the name field so that it executes onmouseout or onmouseover or on whatever 
+property it is defined on. The catch is, you have put all of that in a single line.
+
+##Valid Markups In Custom Buttons:
+
+| Markup                         | Interpretation/Preview         |
+|:-------------------------------|:-------------------------------|
+| `<span></span>` | <span>Span</span> |
+| `<kbd></kbd>` | <kbd>Keyboard key</kbd> |
+| `<var></var>` | <var>Variable</var> |
+| `<s></s>` | <s>Deleted text</s> |
+| `<del></del>` | <del>Deleted text</del> |
+| `<q></q>` | <q>Short quotation</q> |
+| `<b></b>` | <b>Bold text</b> |
+| `<i></i>` | <i>Italic text</i> |
+| `<u></u>` | <u>Underlined text</u> |
+| `<code></code>` | <code>Code</code> |
+| `<em></em>` | <em>Emphasis</em> | 
+| `<small></small>` | <small>Small text</small> |
+| `<sub></sub>` | <sub>Subscript</sub> |
+| `<sup></sup>` | <sup>Superscript</sup> |
+| `<mark></mark>` | <mark>Mark</mark> |
+
+
+##Rules To use Markups in Custom Button Name:
+
+The only rule is to not use any spaces between `<` and `tagname` or `<` and `/` or `/tagname` and `>` or `/` and `tagname`.
+
+Example:
+
+<ol>
+<li><code>&lt; span&gt;name&lt;/span&gt;</code> is wrong, space between <code>&lt;</code> and <code>span</code> </li>
+<li><code>&lt;span&gt;name&lt; /span&gt;</code> is wrong, space between <code>&lt;</code> and <code>/span</code></li>
+<li><code>&lt;span&gt;name&lt;/ span&gt;</code> is wrong, space between <code>/</code> and <code>span</code></li>
+<li><code>&lt;span&gt;name&lt;/span &gt;</code> is wrong, space between <code>/span</code> and <code>&gt;</code></li>
+<li><code>&lt;span &gt;name&lt;/span&gt;</code> is right</li>
+<li><code>&lt;span class="classname"&gt;name&lt;/span&gt;</code> is right</li>
+</ol>
+
+<span class="quote">Note: To put `<` or `>` literally, you need to use `&lt;` and `&gt;` respectively. 
+</span>
+
+HTML Markup is only allowed in Button Name. Other fields in creating new button will take the literal meaning of any input string.

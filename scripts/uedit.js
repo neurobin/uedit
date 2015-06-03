@@ -46,6 +46,7 @@ editor = ace.edit("editor-container");
     editor.setTheme("ace/theme/eclipse");
     editor.setShowPrintMargin(false);
     editor.getSession().setMode("ace/mode/php");
+    editor.$blockScrolling = Infinity;
     editor.setOptions({
     enableBasicAutocompletion: true,
     spellcheck: true
@@ -60,7 +61,7 @@ return editor;
 
 function findIndexByIdFromJSON(id){
 		   var obj = JSON.parse(json);
-    array=obj.html;
+    var array=obj.html;
     for(i=0;i<array.length;i++){
     if(array[i].id==id){return i;}
     
@@ -140,7 +141,7 @@ function fillStorageById(id,value){
 	if (typeof(Storage) != "undefined") {
 localStorage.setItem(localStoragePrefix+id,value);
 }
-else {alert("Warning: Local Storage isn't supported..");}
+else {console.log("Warning: Local Storage isn't supported..");}
 }
 
 
@@ -191,7 +192,7 @@ fillStorageWithMainContent();
     // Retrieve
     //document.getElementById("result").innerHTML = localStorage.getItem("lastname");
 } else {
-    alert("Warning: Local Storage isn't supported..");
+    console.log("Warning: Local Storage isn't supported..");
 }
 
 localStorage.setItem('neurobin-uedit-save-as-filename',document.getElementById('save-as-path-input-field').value);
@@ -267,8 +268,8 @@ function wrapSelectedText(lang,elementId,id) {
 	//tagParse(lang,tagIndex);
 	//var fun=fillStorage();
 	var obj = JSON.parse(json);
-    array=obj.html;
-	//alert(id+array[0].id);
+    var array=obj.html;
+	//console.log(id+array[0].id);
 	tagIndex=findIndexByIdFromJSON(id);
 
 
@@ -278,7 +279,7 @@ tagname=array[tagIndex].start;
 lastchar=tagname.slice(-1);
 tag=tagname.substring(1,tagname.length-1);
 tagname="html-"+tag;
-//alert(tagname);
+//console.log(tagname);
 tagStart = document.getElementById(id+"-start").value;
 tagEnd   = document.getElementById(id+"-end").value;
 if (tagStart==null) {
@@ -326,7 +327,7 @@ editor.session.replace(editor.selection.getRange(), replacementText);
 function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
 	
     var obj = JSON.parse(jsonstring);
-    array=obj.html;
+    var array=obj.html;
     for(var i=0;i<array.length;i++){
     var element = document.createElement("BUTTON");
     var brElement = document.createElement("BR");
@@ -345,7 +346,7 @@ function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
     localStorage.setItem('neurobin-uedit-json',json);
     
     element.class=array[i].class+" "+classname;
-    //alert('fds');
+    //console.log('fds');
     element.onclick=function(){wrapSelectedText("html","editor-container",this.id);};
     /////show context menu on right click
     if (element.addEventListener) {
@@ -367,20 +368,49 @@ startInput.value=array[i].start;
 if(array[i].type!="textarea"){startInput.type="text";}
 startInput.id=element.id+"-start";
 startInput.placeholder="start";
-if(array[i].type="textarea"){startInput.style.resize="none";}
+if(array[i].type=="textarea"){startInput.style.resize="none";}
 startInput.name="toolBar1-input-field";
 //if(type!="textarea"){startInput.style.overflowY="none";}
 startInput.onmouseover=function(){setTitleAsValueOfThisElement(this,"This will be inserted at the start of selection");}
+if (startInput.addEventListener) {
+  startInput.addEventListener('input', function() {
+    fillStorage();
+    console.log("fillStorage successful, stored in local storage");
+  }, false);
+} else if (startInput.attachEvent) {
+  startInput.attachEvent('onpropertychange', function() {
+    // IE-specific event handling code
+    fillStorage();
+    console.log("fillStorage successful, stored in local storage");
+  });
+}
+
+
 
 
 endInput.value=array[i].end;
 if(array[i].type!="textarea"){endInput.type="text";}
 endInput.id=element.id+"-end";
 endInput.placeholder="end";
-if(array[i].type="textarea"){endInput.style.resize="none";}
+if(array[i].type=="textarea"){endInput.style.resize="none";}
 endInput.name="toolBar1-input-field";
 //if(type!="textarea"){endInput.style.overflowY="none";}
 endInput.onmouseover=function(){setTitleAsValueOfThisElement(this,"This will be inserted at the end of selection");}
+
+if (endInput.addEventListener) {
+  endInput.addEventListener('input', function() {
+    fillStorage();
+    console.log("fillStorage successful, stored in local storage");
+  }, false);
+} else if (endInput.attachEvent) {
+  endInput.attachEvent('onpropertychange', function() {
+    // IE-specific event handling code
+    fillStorage();
+    console.log("fillStorage successful, stored in local storage");
+  });
+}
+
+
     
     var foo = document.getElementById(parentId);
     //Append the element in page (in span).
@@ -436,9 +466,38 @@ alert("Error: "+inputfields[i].title+" correctly");
 return;
 
 }
-
-
 }
+/////
+var validMarkups=["span","kbd","var","s","del","q","b","i","u","code","em","small","sub","sup","mark"];
+var pattern=/<[\s]*[^<]*[\s]*[^<>]*<?[\s]*\/?[\s]*\w*[\s]*>?/ig;
+//var pattern=/<span[\s]*[\w\s"'=&;>]*[\s]*<\/span>/i
+var name=document.getElementById('uedit-add-button-dialog-innerhtml').value;
+var result=name.match(pattern);
+//var validPattern="/<"+"span"+"[\\s]*[\\w\\s\"'=&;>]*[\\s]*"+"<\\/"+"span"+">/i";
+//console.log(validPattern);
+if (result!=null) {
+	var flag=0;
+	console.log(result);
+	for (var j=0;j<result.length;j++) {
+	for (var i=0;i<validMarkups.length;i++) {
+var validPattern="<"+validMarkups[i]+"[\\s]*[^<>]*>[\\s]*[^<>]*"+"<\\/"+validMarkups[i]+">";
+validPattern=new RegExp(validPattern,"i");
+var valid=result[j].match(validPattern); 
+console.log(result[0]);
+console.log(valid);
+if (valid!=null) {flag++;}
+
+}}
+if (flag==0) {
+	var head="<span class=\"error\">Invalid Markup!!</span>";
+	var msg="<a href=\""+getInfoURL("btn-valid-markups")+"\">See a list of valid markups and rules</a>";
+openMessageDialog(head,msg);
+return;
+}
+}
+
+
+
 getFormDataAndCreateButton(formId,parentId);
 }
 
@@ -455,7 +514,7 @@ var type=document.getElementById(formId+"-type").value;
 var position=document.getElementById(formId+"-position").value;
 
 if (type!="textarea") {type="input";}
-
+fillStorageFromInputDialogFields();
  createNewButton(parentId,lang,start,end,title,classname,innerhtml,type,position);
  
 
@@ -478,7 +537,7 @@ function insertIntoJSON(lang,start,end,title,classname,innerhtml,type,position){
 
 json=getJSONString();
 var obj=JSON.parse(json);
-array=obj.html;
+var array=obj.html;
 var patt=/^[0-9]+$/;
 var result = position.match(patt);
 if (position<0) {position=0;}
@@ -532,6 +591,28 @@ var call1=openModalDialog("Attention!!","Are you sure you want to delete all but
 
 }
 
+function openMessageDialog(head,msg){
+	var dialog=document.getElementById("messageDialog");
+
+   var header=dialog.getElementsByTagName('h2');
+   header[0].innerHTML=head;
+   var message=dialog.getElementsByTagName("p");
+   message[0].innerHTML=msg;
+	
+var buttons=dialog.getElementsByTagName("button");
+	for (var i=0;i<buttons.length;i++) {
+buttons[i].innerHTML=buttons[i].name;
+	}
+
+   dialog.style.display="block";
+	dialog.style.opacity="1";
+	dialog.style.pointerEvents="auto";
+
+
+}
+
+
+
 function openModalDialog(head,msg){
 	var dialog=document.getElementById("openModal");
 
@@ -550,6 +631,16 @@ buttons[i].innerHTML=buttons[i].name;
 	dialog.style.pointerEvents="auto";
    
 }
+
+function closeMessageDialog(){
+	var dialog=document.getElementById("messageDialog");
+	dialog.style.opacity="0";
+	dialog.style.pointerEvents="none";
+	dialog.style.display="none";
+
+
+}
+
 
 function closeModalDialog(){
 	var dialog=document.getElementById("openModal");
@@ -659,7 +750,7 @@ deleteButtonFromArray("toolBar1","html",[id.id]);
 function deleteButtonFromArray(parentId,lang,idarr){
 json=getJSONString();
 var obj=JSON.parse(json);
-array=obj.html;
+var array=obj.html;
 for (var j=0;j<idarr.length;j++) {
 for (var i=0;i<array.length;i++) {
 	if (array[i].id==idarr[j]) {array.splice(i,1);}
@@ -705,7 +796,7 @@ function initDownloadify(){
 				},
 				onComplete: function(){  },
 				onCancel: function(){  },
-				onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+				onError: function(){  },
 				swf: 'uedit/media/downloadify.swf',
 				downloadImage: 'uedit/images/download.png',
 				width: 100,
@@ -737,17 +828,23 @@ readOnly: true
 
 }
 
-function showUeditInfo(){
+function getInfoURL(id) {
 	var dir,file;
 	dir=window.location.href.substr(0,window.location.href.lastIndexOf("/")+1);
 	file=window.location.href.substr(window.location.href.lastIndexOf("/")+1);
 var ext=file.substr(file.lastIndexOf("."));
 var filename=file.substr(0,file.lastIndexOf("."));
-var width=screen.width/1.6,height=screen.height/1.3;
+
+showInfoURL=dir+"showinfo"+ext+"#"+id;
+return showInfoURL;
+}
+
+
+function showUeditInfo(id){
+	var width=screen.width/1.6,height=screen.height/1.3;
 if (width<=400) {width=screen.width;}
 if (height<=400) {height=screen.height;}
-showInfoURL=dir+"showinfo"+ext;
-window.open(showInfoURL,"Uedit Info","width="+width+", height="+height+", scrollbars=yes, resizable=yes ");
+window.open(getInfoURL(id),"Uedit Info","width="+width+", height="+height+", scrollbars=yes, resizable=yes ");
 
 }
 
