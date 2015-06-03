@@ -490,7 +490,7 @@ if (valid!=null) {flag++;}
 }}
 if (flag==0) {
 	var head="<span class=\"error\">Invalid Markup!!</span>";
-	var msg="<a href=\""+getInfoURL("btn-valid-markups")+"\">See a list of valid markups and rules</a>";
+	var msg="<a href=\""+getInfoURL("btn-valid-markups")+"\" target=\"_blank\">See a list of valid markups and rules</a>";
 openMessageDialog(head,msg);
 return;
 }

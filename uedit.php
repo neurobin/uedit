@@ -11,7 +11,8 @@
 		<script src="uedit/scripts/src-noconflict/ext-language_tools.js"></script>
 		<script src="uedit/scripts/src-noconflict/mode-php.js"></script>
 		<script src="uedit/scripts/src-noconflict/ext-spellcheck.js"></script>
-		<script src="uedit/scripts/uedit.js" type="text/javascript"></script>
+		<!--<script src="uedit/scripts/uedit.js" type="text/javascript"></script>-->
+		<script src="uedit/scripts/uedit.min.js" type="text/javascript"></script>
 		<script src="uedit/scripts/FileSaver.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="uedit/scripts/swfobject.js"></script>
 		<script type="text/javascript" src="uedit/scripts/downloadify.min.js"></script>

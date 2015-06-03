@@ -10,7 +10,7 @@ then by clicking it you can simply enter the whole string as <code>start</code> 
 a selected text, it will replace the text with <code>&lt;span class="quote"&gt;text&lt;/span&gt;</code> i.e <code>start</code>text<code>end</code></p>
 </li>
 <li>
-<p>If you define the <code>start</code> value with <code>&lt;-- </code> and <code>end</code> value with <code> --&gt;</code>, you will get HTML Comment.</p>
+<p>If you define the <code>start</code> value with <code>&lt;!-- </code> and <code>end</code> value with <code> --&gt;</code>, you will get HTML Comment.</p>
 </li>
 <li>
 <p>If you define the <code>start</code> value with <code>//</code> and leave <code>end</code> empty, you will get single line comment which is the same for several languages.</p>
@@ -154,7 +154,7 @@ You can use HTML Markups in custom button name. That means you get to design you
 HTML Markup. For example, if you put `<b>buttonName</b>` as the button name then your button will
 show with text <b>buttonName</b> bolded. You can put inline styling as well. The funny thing is, you can even put
 JavaScript code in the name field so that it executes onmouseout or onmouseover or on whatever 
-property it is defined on. The catch is, you have put all of that in a single line.
+property it is defined on. The catch is, you have to put all of that in a single line.
 
 ##Valid Markups In Custom Buttons:
 
@@ -188,8 +188,8 @@ Example:
 <li><code>&lt;span&gt;name&lt; /span&gt;</code> is wrong, space between <code>&lt;</code> and <code>/span</code></li>
 <li><code>&lt;span&gt;name&lt;/ span&gt;</code> is wrong, space between <code>/</code> and <code>span</code></li>
 <li><code>&lt;span&gt;name&lt;/span &gt;</code> is wrong, space between <code>/span</code> and <code>&gt;</code></li>
-<li><code>&lt;span &gt;name&lt;/span&gt;</code> is right</li>
-<li><code>&lt;span class="classname"&gt;name&lt;/span&gt;</code> is right</li>
+<li><code>&lt;span &gt;name&lt;/span&gt;</code> is correct</li>
+<li><code>&lt;span class="classname"&gt;name&lt;/span&gt;</code> is correct</li>
 </ol>
 
 <span class="quote">Note: To put `<` or `>` literally, you need to use `&lt;` and `&gt;` respectively. 

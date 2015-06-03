@@ -3,16 +3,18 @@ This is a tiny attempt to develop a Universal Text Editor.
 
 #Features Available:
 
-1. Syntax highlighting for  PHP HTML CSS and JavaScript.
+<ol>
+<li>You never need to worry about saving your content. It's always saved, even if your pc shuts down suddenly due to power failure or other unexpected events.</li>
+<li>Syntax highlighting for  PHP HTML CSS and JavaScript.</li>
 
-2. Content Assist for PHP HTML CSS and JavaScript.
+<li>Content Assist for PHP HTML CSS and JavaScript.</li>
 
-3. Buttons can be defined to modify text.
+<li>Buttons can be defined to modify text.</li>
 
-4. Default button set for HTML and PHP.
+<li>Default button set for HTML and PHP.</li>
 
-5. Buttons are customizable (create and delete).
-
+<li>Buttons are customizable (create and delete).</li>
+</ol>
 <div id="usage"></div>
 #Usage:
 The salient feature is the custom buttons. A custom button can be defined to do various types of text manipulation.
@@ -26,7 +28,7 @@ then by clicking it you can simply enter the whole string as <code>start</code> 
 a selected text, it will replace the text with <code>&lt;span class="quote"&gt;text&lt;/span&gt;</code> i.e <code>start</code>text<code>end</code></p>
 </li>
 <li>
-<p>If you define the <code>start</code> value with <code>&lt;-- </code> and <code>end</code> value with <code> --&gt;</code>, you will get HTML Comment.</p>
+<p>If you define the <code>start</code> value with <code>&lt;!-- </code> and <code>end</code> value with <code> --&gt;</code>, you will get HTML Comment.</p>
 </li>
 <li>
 <p>If you define the <code>start</code> value with <code>//</code> and leave <code>end</code> empty, you will get single line comment which is the same for several languages.</p>
