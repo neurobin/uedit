@@ -123,7 +123,7 @@
 <tr>
 <td id="uedit-save-as-table-tr1-td1" style="width:40%;">
 <span id="uedit-save-as-button" class="options-button">
-<object style="visibility: visible;" data="media/downloadify.swf" name="downloadify_1433158930117" id="downloadify_1433158930117" type="application/x-shockwave-flash" height="30" width="100">
+<object style="visibility: visible;" data="uedit/media/downloadify.swf" name="downloadify_1433158930117" id="downloadify_1433158930117" type="application/x-shockwave-flash" height="30" width="100">
 <param value="always" name="allowScriptAccess">
 <param value="transparent" name="wmode">
 <param value="queue_name=downloadify_1433158930117&amp;width=100&amp;height=100&amp;downloadImage=uedit/images/download.png" name="flashvars">
@@ -177,8 +177,9 @@
 
 
 <script>
+checkForLocalStorageSupport();
 editor=initAceEditor();
-createButtonFromJSON('toolBar1',"html","editor-buttons");
+checkForFirstRunAndInitializeButtons('toolBar1',"html","editor-buttons");
 getFromStorage();
 setMainContentFromStorage();
 editor.getSession().on('change', function(e) {
@@ -195,7 +196,7 @@ if (filename.addEventListener) {
   filename.attachEvent('onpropertychange', function() {
     // IE-specific event handling code
     fillStorage();
-    console.log("fillStorage successful, stored in local storage");
+    console.log("fillStorage successful, stored in local storage\nIE is not a recommended browser for this editor");
   });
 }
 initDownloadify();

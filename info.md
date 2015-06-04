@@ -196,3 +196,32 @@ Example:
 </span>
 
 HTML Markup is only allowed in Button Name. Other fields in creating new button will take the literal meaning of any input string.
+
+
+<div id="local-storage-not-found"></div>
+#Local Storage:
+Uedit uses local storage of browser to store user specific data and content. If Local storage is not 
+available or disabled in the browser then nothing will be saved and simple reload of the page will make you
+lose all of your content. So before starting writing/editing make sure your browser supports the use of local
+storage and it is enabled. To check it, you don't have to do anything special, just reload the editor and if it
+finds everything right it won't say anything, otherwise it will warn you with a message box.
+
+<div id="local-storage-disabled"></div>
+##What will you do if the message box says local storage is disabled:
+You just need to go to your browser settings and enable local storage (or cookie in some browsers).
+
+###For firefox:
+<ol>
+<li>In a new tab type <code>about:config</code> and hit <kbd>Enter</kbd> and confirm action.</li>
+<li>Put <code>Dom.storage.enabled</code> in the search bar and hit <kbd>Enter</kbd>.</li>
+<li>Check the <code>value</code>, if it's true, local storage is enabled or vice-versa.</li>
+<li>Double click on this to change the value.</li>
+</ol>
+###Chrome:
+<ol>
+<li>Go to settings, then expand <q>Advanced settings</q>.</li>
+<li>navigate to <q>Privacy</q> section</li>
+<li>Click on <q>content settings</q></li>
+<li>Look in the <q>Cookie</q> section</li>
+<li>Check the check box that says <q>Allow local data to be set</q></li>
+</ol>

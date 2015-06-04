@@ -8,6 +8,7 @@ localStoragePrefix="neurobin-uedit-";
 projectName="uedit";
 autoSaveTimeout=5000;
 contextMenu="context-menu";
+localStorageNotSupported=0;
 
 var jsonDefault = '{"html":[' +
 '{"id":"","start":"","end":"","title":"Define it manually","class":"editor-button","innerhtml":"General","type":"textarea"  },' +
@@ -76,18 +77,24 @@ var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make 
 
          var confirmationMessage = 'Are you sure to leave the page?';  // a space
                 //(e || window.event).returnValue = fillStorage();
+                
                 return fillStorage();
             });
 
 
 function getFromStorageById(id){
-if (typeof(Storage) != "undefined") {
-
+if (isLocalStorageEnabled()===true) {
 return localStorage.getItem(localStoragePrefix+id);
+}
+else {return "";}
 
 }
-else {alert("Warning: Local Storage isn't supported..");}
 
+function getFromStorageByAbsoluteId(id){
+if (isLocalStorageEnabled()===true) {
+return localStorage.getItem(id);
+}
+else {return "";}
 }
 
 
@@ -95,7 +102,7 @@ function getInputDialogFieldsFromStorage() {
 var inputdialogfieldes=document.getElementsByName('input-dialog-input-field');
 for (var i=0;i<inputdialogfieldes.length;i++) {
 //if (localStorage.getItem("neurobin-uedit-"+inputdialogfieldes[i].id!="")) {
-inputdialogfieldes[i].value=localStorage.getItem("neurobin-uedit-"+inputdialogfieldes[i].id);}//}
+inputdialogfieldes[i].value=getFromStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id);}//}
 }
 
 
@@ -104,7 +111,7 @@ var toolBar1inputfields=document.getElementsByName('toolBar1-input-field');
 
 for (var i=0;i<toolBar1inputfields.length;i++) {
 //if (localStorage.getItem("neurobin-uedit-"+toolBar1inputfields[i].id)!="") {
-toolBar1inputfields[i].value=localStorage.getItem("neurobin-uedit-"+toolBar1inputfields[i].id);}//}
+toolBar1inputfields[i].value=getFromStorageByAbsoluteId("neurobin-uedit-"+toolBar1inputfields[i].id);}//}
 
 }
 
@@ -120,7 +127,7 @@ getToolBar1InputFields();
 
 json=getJSONString();
 
-document.getElementById('save-as-path-input-field').value=localStorage.getItem('neurobin-uedit-save-as-filename');
+document.getElementById('save-as-path-input-field').value=getFromStorageByAbsoluteId('neurobin-uedit-save-as-filename');
 
 }
 //////////////////////////////Document is loaded inside the below statement
@@ -131,133 +138,95 @@ document.body.onclick=function(){
 hideContextMenu();
 
 };
-$("body").css("overflow", "hidden");
+//$("body").css("overflow", "hidden");
+document.body.style.overflow="hidden";
     }, false);
     
 function fillStorageById(id,value){
-	if (typeof(Storage) != "undefined") {
+if (isLocalStorageEnabled()===true) {
 localStorage.setItem(localStoragePrefix+id,value);
 }
-else {console.log("Warning: Local Storage isn't supported..");}
+else {
+console.log(id+"="+value+"wasn't saved because local storage is unavailable");
+}
 }
 
-
+function fillStorageByAbsoluteId(id,value){
+if (isLocalStorageEnabled()===true) {
+localStorage.setItem(id,value);
+}
+else {
+console.log(id+"="+value+"wasn't saved because local storage is unavailable");
+}
+}
     
 function fillStorageFromInputDialogFields() {
 var inputdialogfieldes=document.getElementsByName('input-dialog-input-field');
     for (var i=0;i<inputdialogfieldes.length;i++) {
-localStorage.setItem("neurobin-uedit-"+inputdialogfieldes[i].id,inputdialogfieldes[i].value);}
+fillStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id,inputdialogfieldes[i].value);}
 
 }
+function removeItemFromStorageByAbsoluteId(id){
+if (isLocalStorageEnabled()===true) {
+	localStorage.removeItem(id);
+	console.log("Local storage of custom buttons were removed");
+}
+else {
+console.log(id+"wasn't deleted because local storage is unavailable");
+}
 
+}
 
 function fillStorageFromToolBar1InputFields(){
     var toolBar1inputfields=document.getElementsByName('toolBar1-input-field');
 
     for (var i=0;i<toolBar1inputfields.length;i++) {
-localStorage.setItem("neurobin-uedit-"+toolBar1inputfields[i].id,toolBar1inputfields[i].value);}
+fillStorageByAbsoluteId("neurobin-uedit-"+toolBar1inputfields[i].id,toolBar1inputfields[i].value);}
 
 }
+
+function emptyStorageOfToolBar1InputFields() {
+    var toolBar1inputfields=document.getElementsByName('toolBar1-input-field');
+
+    for (var i=0;i<toolBar1inputfields.length;i++) {
+removeItemFromStorageByAbsoluteId("neurobin-uedit-"+toolBar1inputfields[i].id);}
+
+}
+
 
 function fillStorageWithMainContent(){
 fillStorageById("editor-main-content",editor.getSession().getValue());
 }
+
 function setMainContentFromStorage(){
-	
-
-
 
 editor.getSession().setValue(getFromStorageById("editor-main-content"));
 
-
-
-	
 }
 
 
+
+
 function fillStorage() {
-// Check browser support
-if (typeof(Storage) != "undefined") {
-    // Store
+	
+
     
 fillStorageFromInputDialogFields();
 fillStorageFromToolBar1InputFields();
 
 
-localStorage.setItem('neurobin-uedit-json',json);
+fillStorageByAbsoluteId('neurobin-uedit-json',json);
+
 fillStorageWithMainContent();
     // Retrieve
     //document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-} else {
-    console.log("Warning: Local Storage isn't supported..");
-}
 
-localStorage.setItem('neurobin-uedit-save-as-filename',document.getElementById('save-as-path-input-field').value);
-
+fillStorageByAbsoluteId('neurobin-uedit-save-as-filename',document.getElementById('save-as-path-input-field').value);
 
 }
 
 
 
-
-/*function getIFrameDocument(aID){
-  // if contentDocument exists, W3C compliant (Mozilla)
-  if (document.getElementById(aID).contentDocument){
-    return document.getElementById(aID).contentDocument;
-  } else {
-    // IE
-    return document.frames[aID].document;
-  }
-}*/
-
-
-/*function setDesignModeOn(id){
- getIFrameDocument(id).designMode = "On";
-}
-*/
-
-
-
-/*function getSelectedText(){var text="";
-if (window.getSelection) {text=window.getSelection();}
-else{text=document.selection.createRange().text;}
-return text;
-}*/
-
-/*function getSelectionHtml() {
-    var html = "";
-    if (typeof window.getSelection != "undefined") {
-        var sel = window.getSelection();
-        if (sel.rangeCount) {
-            var container = document.createElement("div");
-            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-                container.appendChild(sel.getRangeAt(i).cloneContents());
-            }
-            html = container.innerHTML;
-        }
-    } else if (typeof document.selection != "undefined") {
-        if (document.selection.type == "Text") {
-            html = document.selection.createRange().htmlText;
-        }
-    }
-    return html;
-}*/
-
-
-/*function replaceSelectedText(replacementText) {
-    var sel, range;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            range.deleteContents();
-            range.insertNode(document.createTextNode(replacementText));
-        }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text = replacementText;
-    }
-}*/
 
 
 
@@ -340,7 +309,7 @@ function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
     element.title=array[i].title;
     array[i].id=element.id;
     json=JSON.stringify(obj);
-    localStorage.setItem('neurobin-uedit-json',json);
+    fillStorageByAbsoluteId('neurobin-uedit-json',json);
     
     element.class=array[i].class+" "+classname;
     //console.log('fds');
@@ -459,7 +428,10 @@ function validateForm(formId,parentId){
 var inputfields=document.getElementsByName("input-dialog-input-field");
 for(var i=0;i<inputfields.length;i++){
 if (inputfields[i].checkValidity()==false) {
-alert("Error: "+inputfields[i].title+" correctly");
+
+var head="<span class=\"error\">Invalid input!!</span>";
+var msg=inputfields[i].title+" correctly";
+openMessageDialog(head,msg);
 return;
 
 }
@@ -553,7 +525,7 @@ newarrayitem.type=type;
 array.splice(position,0,newarrayitem);
 json=JSON.stringify(obj);
 
-localStorage.setItem('neurobin-uedit-json',json);
+fillStorageByAbsoluteId('neurobin-uedit-json',json);
 fillStorageById(newarrayitem.id+"-start",start);
 fillStorageById(newarrayitem.id+"-end",end);
 
@@ -561,14 +533,18 @@ fillStorageById(newarrayitem.id+"-end",end);
 
 
 function getJSONString(){
+	if (isLocalStorageEnabled()==true) {
 var jsonString=localStorage.getItem('neurobin-uedit-json');
 if (jsonString!=null&&jsonString!="") {json=jsonString;}  
 return json;
 }
+else {return jsonDefault;}
+}
 
 function createButtonFromDefaultJSON(parentId,lang,classname){
+emptyStorageOfToolBar1InputFields();
 document.getElementById(parentId).innerHTML="";
-var call1=createButtonFromAnyJSON(jsonDefault,parentId,lang,classname);
+createButtonFromAnyJSON(jsonDefault,parentId,lang,classname);
 fillStorage();
 }
 
@@ -583,7 +559,7 @@ function resetButtonsToDefault(parentId,lang,classname){
         
     }	*/
 	
-var call1=openModalDialog("Attention!!","Are you sure you want to delete all button customizaion and reset to default ?");
+openModalDialog("Attention!!","Are you sure you want to delete all button customizaion and reset to default ?");
 
 
 }
@@ -755,7 +731,7 @@ for (var i=0;i<array.length;i++) {
 }}
 
 json=JSON.stringify(obj);
-localStorage.setItem('neurobin-uedit-json',json);
+fillStorageByAbsoluteId('neurobin-uedit-json',json);
 document.getElementById(parentId).innerHTML="";
 createButtonFromJSON(parentId,lang,"editor-button");
 
@@ -845,5 +821,55 @@ window.open(getInfoURL(id),"Uedit Info","width="+width+", height="+height+", scr
 
 }
 
+function removeFirstRunTag() {
+fillStorageByAbsoluteId('neurobin-uedit-firstRun',"notNull");
+console.log("First run tag removed");
+}
 
+function checkForFirstRunAndInitializeButtons(parentId,lang,classname){
+	currentParentId=parentId;
+	currentLang=lang;
+	currentClassName=classname;
+	if (getFromStorageByAbsoluteId('neurobin-uedit-firstRun')!="notNull") {
+createButtonFromDefaultJSON(currentParentId,currentLang,currentClassName);
+console.log("This was a frist run for this browser");
+removeFirstRunTag();
+}
+else {
+createButtonFromJSON(currentParentId,currentLang,currentClassName);
+}
+
+
+}
+
+
+function checkForLocalStorageSupport(){
+	if (typeof(Storage) != "undefined") {
+		console.log("Local Storage supported");
+		if (isLocalStorageEnabled()===false) {
+var head="<span class=\"error\">Local Storage Disabled!!</span>";
+var msg="It seems Local Storage support is disabled in your browser. Please enable it from browser settings and reload the editor.<br><a href=\""+getInfoURL("local-storage-disabled")+"\">Learn More</a>";
+openMessageDialog(head,msg);return;}
+}
+else {
+	if (localStorageNotSupported==0) {
+var head="<span class=\"error\">Local Storage Not supported!!</span>";
+var msg="Check if your browser supports the use of local Storage<br><a href=\""+getInfoURL("local-storage-not-found")+"\">Learn More</a>";
+openMessageDialog(head,msg);
+localStorageNotSupported=1;return;
+}
+}
+
+}
+
+function isLocalStorageEnabled(){
+    var test = "test";
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
 
