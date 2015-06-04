@@ -872,4 +872,8 @@ function isLocalStorageEnabled(){
         return false;
     }
 }
+function resetAllStorage() {
+	if(isLocalStorageEnabled()===true){
+localStorage.clear();}
 
+}
