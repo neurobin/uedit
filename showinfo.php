@@ -6,9 +6,9 @@
 		<?php
 		require_once 'head.php';
 		?>
-		<meta name="description" content="Universal Text Editor Manual">
+		<meta name="description" content="Universal Text Editor User Manual">
 		<meta name="keywords" content="uedit,neurobin,universal text editor,text editor" />
-		<title>Uedit Manual @ Neurobin</title>
+		<title>Uedit User Manual @ Neurobin</title>
 
 	</head>
 	<body onload="startTime()">
@@ -30,7 +30,7 @@
 					Uedit
 				</p>
 				<p class="project-tagline">
-					Universal Text Editor Manual
+					Universal Text Editor User Manual
 				</p>
 
 			</div>

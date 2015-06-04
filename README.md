@@ -4,7 +4,7 @@ This is a tiny attempt to develop a Universal Text Editor.
 #Features Available:
 
 <ol>
-<li>You never need to worry about saving your content. It's always saved, even if your pc shuts down suddenly due to power failure or other unexpected events.</li>
+<li>You never need to worry about saving your content. It's always saved, even if your pc shuts down suddenly due to power failure or other unexpected events (As long as you don't uninstall your browser it's available).</li>
 <li>Syntax highlighting for  PHP HTML CSS and JavaScript.</li>
 
 <li>Content Assist for PHP HTML CSS and JavaScript.</li>
