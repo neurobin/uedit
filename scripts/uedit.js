@@ -9,6 +9,7 @@ projectName="uedit";
 autoSaveTimeout=5000;
 contextMenu="context-menu";
 localStorageNotSupported=0;
+currentId="";
 
 var jsonDefault = '{"html":[' +
 '{"id":"","start":"","end":"","title":"Define it manually","class":"editor-button","innerhtml":"General","type":"textarea"  },' +
@@ -33,7 +34,9 @@ var jsonDefault = '{"html":[' +
 json=jsonDefault;
 
 
-
+Array.prototype.move = function(from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+};
 
 function initAceEditor(){  
 
@@ -405,9 +408,9 @@ tr.appendChild(td3);
 function createButtonFromJSON(parentId,lang,classname){
     //Create an input type dynamically.  
 json=getJSONString();   
-var call1=createButtonFromAnyJSON(json,parentId,lang,classname);
+createButtonFromAnyJSON(json,parentId,lang,classname);
 
-var fun=getFromStorage();
+getFromStorage();
 
 }
 
@@ -424,7 +427,7 @@ createButtonFromJSON(parentId,lang,classname);
 
 }
 
-function validateForm(formId,parentId){
+function validateForm(formId,parentId,task){
 var inputfields=document.getElementsByName("input-dialog-input-field");
 for(var i=0;i<inputfields.length;i++){
 if (inputfields[i].checkValidity()==false) {
@@ -440,7 +443,7 @@ return;
 var validMarkups=["span","kbd","var","s","del","q","b","i","u","code","em","small","sub","sup","mark"];
 var pattern=/<[\s]*[^<]*[\s]*[^<>]*<?[\s]*\/?[\s]*\w*[\s]*>?/ig;
 //var pattern=/<span[\s]*[\w\s"'=&;>]*[\s]*<\/span>/i
-var name=document.getElementById('uedit-add-button-dialog-innerhtml').value;
+var name=document.getElementById(formId+'-innerhtml').value;
 var result=name.match(pattern);
 //var validPattern="/<"+"span"+"[\\s]*[\\w\\s\"'=&;>]*[\\s]*"+"<\\/"+"span"+">/i";
 //console.log(validPattern);
@@ -467,7 +470,10 @@ return;
 
 
 
-getFormDataAndCreateButton(formId,parentId);
+if(task=="add"){getFormDataAndCreateButton(formId,parentId);}
+else {getFormDataAndEditButton(formId,parentId,currentId);}
+
+
 }
 
 
@@ -490,9 +496,58 @@ fillStorageFromInputDialogFields();
 
 }
 
+
+function getFormDataAndEditButton(formId,parentId,id){
+	itemGone(formId);
+var lang=document.getElementById(formId+"-lang").value;
+var start=document.getElementById(formId+"-start").value;
+var end=document.getElementById(formId+"-end").value;
+var title=document.getElementById(formId+"-title").value;
+var classname=document.getElementById(formId+"-class").value;
+var innerhtml=document.getElementById(formId+"-innerhtml").value;
+var type=document.getElementById(formId+"-type").value;
+var position=document.getElementById(formId+"-position").value;
+position=getValidPosition(position);
+if (type!="textarea") {type="input";}
+json=getJSONString();
+var obj=JSON.parse(json);
+var array=obj.html;
+if (position>=array.length) {position=array.length-1;}
+for(var i=0;i<array.length;i++){
+if (array[i].id===id) {
+	array[i].start=start;
+	array[i].end=end;
+	array[i].title=title;
+	array[i].class=classname;
+	array[i].innerhtml=innerhtml;
+	array[i].type=type;
+	array.move(i,position);
+	console.log(i+" "+position);
+fillStorageById(array[position].id+"-start",start);
+fillStorageById(array[position].id+"-end",end);
+
+}
+
+}
+
+json=JSON.stringify(obj);
+fillStorageByAbsoluteId('neurobin-uedit-json',json);
+fillStorageFromInputDialogFields();
+document.getElementById(parentId).innerHTML="";
+createButtonFromJSON(parentId,lang,classname);
+
+
+
+}
+
+
+
+
 function itemGone(itemId){
+	
 document.getElementById(itemId).style.transitionDuration="1s";
 document.getElementById(itemId).style.right="-100%";
+console.log("itemGone reached "+itemId);
 }
 
 
@@ -500,7 +555,16 @@ function showInputDialog(formId){
 document.getElementById(formId).style.transitionDuration=".7s";
 document.getElementById(formId).style.right="0";
 }
-
+function getValidPosition(position){
+	json=getJSONString();
+var obj=JSON.parse(json);
+var array=obj.html;
+var patt=/^[0-9]+$/;
+var result = position.match(patt);
+if (position<0) {position=0;}
+else if (result==null||result==""||position>array.length) {position=array.length;}
+return position;
+}
 
 function insertIntoJSON(lang,start,end,title,classname,innerhtml,type,position){
 
@@ -661,6 +725,7 @@ ctxm.style.top=pos.y+"px";
 ctxmItems=ctxm.getElementsByTagName("a");
 for(var i=0;i<ctxmItems.length;i++){
 ctxmItems[i].onclick=function(){
+	console.log(id.id+this.name);
 processInputFromContextMenu(id,this.name);
 }}
 
@@ -712,10 +777,12 @@ function processInputFromContextMenu(id,itemName){
 
 if (itemName=="delete") {
 deleteButtonFromArray("toolBar1","html",[id.id]);
-
-
 }
-
+if (itemName=="edit") {
+	
+editButtonIntoArray("uedit-edit-button-dialog","toolBar1","html",[id.id]);
+console.log(id.id+itemName);
+}
 
 }
 
@@ -734,6 +801,32 @@ json=JSON.stringify(obj);
 fillStorageByAbsoluteId('neurobin-uedit-json',json);
 document.getElementById(parentId).innerHTML="";
 createButtonFromJSON(parentId,lang,"editor-button");
+
+}
+
+
+function editButtonIntoArray(formId,parentId,lang,idarr){
+	
+	json=getJSONString();
+var obj=JSON.parse(json);
+var array=obj.html;
+for (var j=0;j<idarr.length;j++) {
+for (var i=0;i<array.length;i++) {
+	if (array[i].id==idarr[j]) {
+document.getElementById(formId+"-lang").value="html";
+document.getElementById(formId+"-start").value=getFromStorageById(idarr[j]+"-start");
+document.getElementById(formId+"-end").value=getFromStorageById(idarr[j]+"-end");
+document.getElementById(formId+"-title").value=array[i].title;
+document.getElementById(formId+"-class").value=array[i].class;
+document.getElementById(formId+"-innerhtml").value=array[i].innerhtml;
+document.getElementById(formId+"-type").value=array[i].type;
+document.getElementById(formId+"-position").value=i;
+currentId=idarr[j];
+}
+}}
+
+fillStorageFromInputDialogFields();
+showInputDialog(formId);
 
 }
 
@@ -873,7 +966,5 @@ function isLocalStorageEnabled(){
     }
 }
 function resetAllStorage() {
-	if(isLocalStorageEnabled()===true){
-localStorage.clear();}
-
+	localStorage.clear();
 }

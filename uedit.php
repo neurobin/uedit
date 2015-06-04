@@ -53,7 +53,7 @@
 <nav id="context-menu">
   <ul class="context-menu-items">
     <li class="context-menu-btn-item">
-      <a name="edit" class="context-menu-link disabled-link">
+      <a name="edit" class="context-menu-link">
         <i class="fa fa-edit"></i> Edit
       </a>
     </li>
@@ -98,11 +98,44 @@
 <input name="input-dialog-input-field" type="number" id="uedit-add-button-dialog-position" placeholder="Position" value="" title="Put the position index">
 <br>
 <button id="uedit-add-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-add-button-dialog')">Close</button>
-<button id="uedit-add-button-dialog-submit-button" onclick="validateForm('uedit-add-button-dialog','toolBar1')">Add</button>
+<button id="uedit-add-button-dialog-submit-button" onclick="validateForm('uedit-add-button-dialog','toolBar1','add')">Add</button>
 
 
 
 </div>
+
+
+<div class="input-dialog" id="uedit-edit-button-dialog">
+<p>Edit Button</p>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-lang" placeholder="Language/Section" value="html" title="Put the language/section name" maxlength="30">
+
+<br>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-start" placeholder="Start" value="" title="Put the start tag">
+<br>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-end" placeholder="End" value="" title="Put the end tag">
+<br>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-title" placeholder="Title" value="Custom Button" title="Put the title">
+
+<br>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-class" placeholder="Class" value="" title="Put the class name">
+<br>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-innerhtml" placeholder="Button name" value="" title="Put the button name (HTML Markup Allowed)" required="true">
+<span class="glyphicon glyphicon-asterisk required-flag"></span>
+<br>
+<select name="input-dialog-input-field" id="uedit-edit-button-dialog-type" title="Type of input box">
+    <option value="input">Text Field</option>
+    <option value="textarea">Text Area</option>
+</select>
+<br>
+<input name="input-dialog-input-field" type="number" id="uedit-edit-button-dialog-position" placeholder="Position" value="" title="Put the position index">
+<br>
+<button id="uedit-edit-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-edit-button-dialog')">Close</button>
+<button id="uedit-edit-button-dialog-submit-button" onclick="validateForm('uedit-edit-button-dialog','toolBar1','edit')">Done</button>
+
+
+
+</div>
+
 
 
 
