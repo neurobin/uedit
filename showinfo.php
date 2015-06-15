@@ -3,9 +3,11 @@
 	<head>
 		<base href="../" />
 		<?php chdir("../"); ?>
-		<?php
-		require_once 'head.php';
-		?>
+
+
+<?php require_once('statichead.php'); ?>
+
+
 		<meta name="description" content="Universal Text Editor User Manual">
 		<meta name="keywords" content="uedit,neurobin,universal text editor,text editor" />
 		<title>Uedit User Manual @ Neurobin</title>
