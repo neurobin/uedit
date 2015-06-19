@@ -834,7 +834,7 @@ showInputDialog(formId);
 function saveAsUeditMainContent(){
 	var filename=document.getElementById("save-as-path-input-field").value;
 	if(filename==""||filename==null){filename="uedited-file";}
-var blob = new Blob([editor.getSession().getValue()], {type: "text/plain;charset=utf-8"});
+var blob = new Blob([editor.getSession().getValue()], {type: "text/plain;charset=ASCII"});
 saveAs(blob, filename);
 
 
