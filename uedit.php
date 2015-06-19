@@ -109,27 +109,27 @@
 
 <div class="input-dialog" id="uedit-add-button-dialog">
 <p>Add Button</p>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-lang" placeholder="Language/Section" value="html" title="Put the language/section name" maxlength="30">
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30">
 
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-start" placeholder="Start" value="" title="Put the start tag">
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-start" placeholder="Start" value="" title="Start tag">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-end" placeholder="End" value="" title="Put the end tag">
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-end" placeholder="End" value="" title="End tag">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-title" placeholder="Title" value="Custom Button" title="Put the title">
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-title" placeholder="Title" value="Custom Button" title="Title">
 
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-class" placeholder="Class" value="" title="Put the class name">
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-innerhtml" placeholder="Button name" value="" title="Put the button name (HTML Markup Allowed)" required="true">
-<span class="glyphicon glyphicon-asterisk required-flag"></span>
+<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML Markup Allowed)" required="true">
+<span class="glyphicon glyphicon-asterisk warning"></span>
 <br>
 <select name="input-dialog-input-field" id="uedit-add-button-dialog-type" title="Type of input box">
     <option value="input">Text Field</option>
     <option value="textarea">Text Area</option>
 </select>
 <br>
-<input name="input-dialog-input-field" type="number" id="uedit-add-button-dialog-position" placeholder="Position" value="" title="Put the position index">
+<input name="input-dialog-input-field" type="number" id="uedit-add-button-dialog-position" placeholder="Position" value="" title="Position index">
 <br>
 <button id="uedit-add-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-add-button-dialog')">Close</button>
 <button id="uedit-add-button-dialog-submit-button" onclick="validateForm('uedit-add-button-dialog','toolBar1','add')">Add</button>
@@ -141,27 +141,27 @@
 
 <div class="input-dialog" id="uedit-edit-button-dialog">
 <p>Edit Button</p>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-lang" placeholder="Language/Section" value="html" title="Put the language/section name" maxlength="30">
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30">
 
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-start" placeholder="Start" value="" title="Put the start tag">
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-start" placeholder="Start" value="" title="Start tag">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-end" placeholder="End" value="" title="Put the end tag">
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-end" placeholder="End" value="" title="End tag">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-title" placeholder="Title" value="Custom Button" title="Put the title">
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-title" placeholder="Title" value="Custom Button" title="Title">
 
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-class" placeholder="Class" value="" title="Put the class name">
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)">
 <br>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-innerhtml" placeholder="Button name" value="" title="Put the button name (HTML Markup Allowed)" required="true">
-<span class="glyphicon glyphicon-asterisk required-flag"></span>
+<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML applicable)" required="true">
+<span class="glyphicon glyphicon-asterisk warning"></span>
 <br>
 <select name="input-dialog-input-field" id="uedit-edit-button-dialog-type" title="Type of input box">
     <option value="input">Text Field</option>
     <option value="textarea">Text Area</option>
 </select>
 <br>
-<input name="input-dialog-input-field" type="number" id="uedit-edit-button-dialog-position" placeholder="Position" value="" title="Put the position index">
+<input name="input-dialog-input-field" type="number" id="uedit-edit-button-dialog-position" placeholder="Position" value="" title="Position index">
 <br>
 <button id="uedit-edit-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-edit-button-dialog')">Close</button>
 <button id="uedit-edit-button-dialog-submit-button" onclick="validateForm('uedit-edit-button-dialog','toolBar1','edit')">Done</button>

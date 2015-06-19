@@ -197,6 +197,34 @@ Example:
 
 HTML Markup is only allowed in Button Name. Other fields in creating new button will take the literal meaning of any input string.
 
+You can apply CSS styling in custom buttons. Either you can use your own inline styling or available CSS classes which is used throughout this website. For example if you put `<span class="warningcolor">buttonName</span>` as the name, the button name will show as `buttonName` with dark red color.
+
+<div id="btn-valid-classname"></div>
+##Available CSS Classes:
+The following list defines the valid set of CSS class names that are allowed in class field for custom buttons. There's absolutely no restriction in the name field of custom buttons; You can use whatever class you like inside HTML tags for button name (The effect will be your responsibility though :D).<br>
+
+| Class                         | Preview         | Applicable To |
+|:------------------------------|:----------------|:--------------|
+| `warningcolor` | <span class="warningcolor">Text</span> | Button/Button Name |
+| `error` | <span class="error">Text</span> | Button/Button Name |
+| `message` | <span class="message">Text</span> | Button/Button Name |
+| `button` | <span class="button">Text</span> | Button/Button Name |
+| `quote` | <span class="quote">Text</span> | Button/Button Name |
+| `light-quote` | <span class="light-quote">Text</span> | Button/Button Name |
+| `warning` | <span class="warning">Text</span> | Button/Button Name |
+| `edit` | <span class="edit">Text</span> | Button/Button Name |
+| `comment` | <span class="comment">Text</span> | Button/Button Name |
+| `caret-right` | <span class="caret-right"></span> | Button/Button Name |
+| `caret-left` | <span class="caret-left"></span> | Button/Button Name |
+| `caret-up` | <span class="caret-up"></span> | Button/Button Name |
+| `caret-down` | <span class="caret-down"></span> | Button/Button Name |
+| `editor-button` | -- | -- |
+| `default` | -- | -- |
+| `custom` | -- | -- |
+| `dummy` | -- | -- |
+| `uedit-btn-custom-*` (*=name) | -- | -- |
+
+
 
 <div id="local-storage-not-found"></div>
 #Local Storage:

@@ -292,6 +292,43 @@ editor.session.replace(editor.selection.getRange(), replacementText);
 
 }
 
+function validateButtonClassName(classname,type){
+	
+var disabledButtonClassNames=['unavailable','disabled-link'];
+var validButtonClassNames='warningcolor error message button unavailable disabled-link '+' '+
+'quote light-quote warning edit comment caret-right caret-left caret-up caret-down editor-button '+
+'custom dummy default ';
+var validButtonClassNameRegex="uedit-btn-custom-*";
+validButtonClassNameRegex=new RegExp(validButtonClassNameRegex);
+
+if(type=="disabled"){
+	
+for (i=0;i<disabledButtonClassNames.length;i++) {
+var regex="\\b"+disabledButtonClassNames[i]+"\\b";
+regex=new RegExp(regex);
+if(regex.test(classname)){
+return "disabled";
+}
+
+}}
+
+if (type="invalid") {
+	var invalidFlag=0;
+	classarr=classname.split(" ");
+	for (i=0;i<classarr.length;i++) {
+var regex="\\b"+classarr[i]+"\\b";
+regex=new RegExp(regex);
+if(!regex.test(validButtonClassNames)&& !validButtonClassNameRegex.test(classarr[i])){
+return "invalid";
+}
+
+}//for
+
+}//if
+
+return "";
+}
+
 
 function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
 	
@@ -314,9 +351,15 @@ function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
     json=JSON.stringify(obj);
     fillStorageByAbsoluteId('neurobin-uedit-json',json);
     
-    element.class=array[i].class+" "+classname;
-    //console.log('fds');
+    element.className=array[i].class;
+    console.log(element.className);
+    if(validateButtonClassName(element.className,"disabled") == "disabled"){
+    	element.style.cssText = "pointer-events: auto !important";
+    	
+    }
+    else {
     element.onclick=function(){wrapSelectedText("html","editor-container",this.id);};
+ }
     /////show context menu on right click
     if (element.addEventListener) {
         element.addEventListener('contextmenu', function(e) {
@@ -433,7 +476,7 @@ for(var i=0;i<inputfields.length;i++){
 if (inputfields[i].checkValidity()==false) {
 
 var head="<span class=\"error\">Invalid input!!</span>";
-var msg=inputfields[i].title+" correctly";
+var msg="Define "+inputfields[i].title+" correctly";
 openMessageDialog(head,msg);
 return;
 
@@ -468,6 +511,12 @@ return;
 }
 }
 
+if (validateButtonClassName(document.getElementById(formId+'-class').value,"invalid")=="invalid") {
+	var head="<span class=\"error\">Invalid Class Name!!</span>";
+	var msg="<a href=\""+getInfoURL("btn-valid-classname")+"\" target=\"_blank\">See a list of valid Class Names</a>";
+openMessageDialog(head,msg);
+return;
+}
 
 
 if(task=="add"){getFormDataAndCreateButton(formId,parentId);}

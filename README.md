@@ -42,3 +42,20 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 <li>You can even put an entire file content into those two boxes and insert them anywhere in the editor by simple button click.</li>
 </ol>
 
+<div id="tips"></div>
+#Quick Tips:
+There are no mouse options for search/find/replace. You need to use keyboard shortcuts:
+
+## Find/Replace
+
+| Windows/Linux                  | Mac                            | Action                         |
+|:-------------------------------|:-------------------------------|:-------------------------------|  
+| Ctrl-F | Command-F | Find |
+| Ctrl-R | Command-Option-F | Replace |
+| Ctrl-K | Command-G | Find next |
+| Ctrl-Shift-K | Command-Shift-G | Find previous |
+
+<br>
+
+Use the <span class="button">SAVE TO DISK</span> button or keyboard shortcut (<kbd>Ctrl+S</kbd> in Windows/Linux and <kbd>command+S</kbd> in Mac) to save content.
+
