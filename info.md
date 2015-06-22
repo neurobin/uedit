@@ -22,6 +22,8 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 <p>You can put your code snippet in the <code>start</code> and <code>end</code> boxes and insert them into editor by simply clicking on the corresponding button.</p>
 </li>
 <li>You can even put an entire file content into those two boxes and insert them anywhere in the editor by simple button click.</li>
+<li>To edit properties of a button, right click on that button and select <q>edit</q>.</li>
+<li>To delete a button, right click on that button and select <q>delete</q>.</li>
 </ol>	
 
 <div id="kbd-shortcuts"><br></div>
@@ -37,7 +39,7 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 | Alt-Down | Option-Down | Move lines down |
 | Alt-Up | Option-Up | Move lines up |
 | Alt-Delete | Ctrl-K | Remove to line end |
-| Alt-Backspace | Command-Backspace | Remove to linestart |
+| Alt-Backspace | Command-Backspace | Remove to line start |
 | Ctrl-Backspace | Option-Backspace, Ctrl-Option-Backspace | Remove word left |
 | Ctrl-Delete | Option-Delete | Remove word right |
 | --- | Ctrl-O | Split line |
@@ -145,6 +147,76 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 | Ctrl-Alt-E | --- | Macros recording |
 | Delete | --- | Delete |
 | --- | Ctrl-L | Center selection |
+
+<div id="btn-custom-skey"></div>
+#Custom Keyboard Shortcuts:
+
+You can set custom keyboard shortcuts for buttons (i.e tasks) which you require more often for your editing. Keyboard shortcuts are limited to 3 primary modifiers (Ctrl, Alt, Shift). The secondary modifier is optional and it's limited to 30 options. The third one is the key and you can put almost anything here (1 character only). Thus combining 1 mandatory modifier and one optional modifier and a key, you can create suitable keyboard shortcuts as you like. When creating keyboard shortcuts you need to consider certain things:
+
+1. Keyboard shortcut, which tries to overwrite any existing shortcut, may or may not work depending on the environment and priority.
+2. Keyboard shortcut, which conflicts with basic functions (such as <kbd>shift+a</kbd> and such, which is actually capitalizaion or writing printable characters)  won't be allowed and you will be rendered with an error message.
+3. Watch out for spaces. If you have space in the third key field  it will show error message and you may not find what's causing this error because the white space is not visible (that's why it is called white space in the first place).
+4. There are two types of shortcuts. One is three keys and other is two keys. There are some predefined keys in the second modifier field which forces the shrotcut to be two keys, i.e it will show error if you try to use a third key.
+These keys are:
+<kbd>Space Bar</kbd> <kbd>Tab</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd> <kbd>Insert</kbd> <kbd>Home</kbd> <kbd>End</kbd> <kbd>Del</kbd> <kbd>PgUp</kbd> <kbd>PgDn</kbd> <kbd>Arrow Keys</kbd> <kbd>F1...F12</kbd>
+<script>
+function getPageURLById(id) {
+	var dir,file;
+	dir=window.location.href.substr(0,window.location.href.lastIndexOf("/")+1);
+	file=window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+	if (file.lastIndexOf("#")>-1) {
+var filename=file.substr(0,file.lastIndexOf("#"));
+}
+var showInfoURL=dir+filename+"#"+id;
+return showInfoURL;
+}
+</script>
+5. There are some default keyboard shortcuts which are not allowed to be changed. <a href="uedit/showinfo.php#btn-invalid-custom-skey">This is a list of these keyboard shortcuts.</a>
+6. There are some keyboard shortcuts which are not allowed to be set, because they are system default or browser default or some other reasons. <a href="uedit/showinfo.php#btn-invalid-custom-skey-others">This is a list of these keyboard shortcuts.</a>
+
+
+<div id="btn-invalid-custom-skey"></div>
+##Default Shortcuts That Are Not Allowed To Be Changed:
+
+
+| Windows/Linux                  | Mac                            | Action                         |
+|:-------------------------------|:-------------------------------|:-------------------------------|  
+| Ctrl-S | Command-S | Save |
+| Ctrl-Z | Command-Z | undo |
+| Ctrl-Shift-Z | Command-Shift-Z | Redo |
+| Ctrl-A | Command-A | Select all |
+| Ctrl-F | Command-F | Find |
+| Ctrl-R | Command-Option-F | Replace |
+| Ctrl-K | Command-G | Find next |
+| Ctrl-Shift-K | Command-Shift-G | Find previous |
+| Shift-Left | Shift-Left | Select left |
+| Shift-Right | Shift-Right | Select right |
+| Shift-Up | Shift-Up | Select up |
+| Shift-Down | Shift-Down | Select down |
+| Shift-Home | Shift-Home | Select line start |
+| Shift-End | Shift-End | Select line end |
+| Shift-PageUp | Shift-PageUp | Select page up |
+| Shift-PageDown | Shift-PageDown | Select page down |
+| Ctrl-Shift-Home | Command-Shift-Up | Select to start |
+| Ctrl-Shift-End | Command-Shift-Down | Select to end |
+| Ctrl-C | Command-C | Copy to clipboard |
+| Ctrl-V | Command-V | Paste From clipboard |
+| Ctrl-X | Command-X | Cut to clipboard |
+| Ctrl-Space | Command-Space | Content Assist|
+
+
+
+<div id="btn-invalid-custom-skey-others"></div>
+##Other Invalid Custom Shortcuts:
+
+
+| Windows/Linux                  | Mac                            | Possible Action                         |
+|:-------------------------------|:-------------------------------|:-------------------------------|  
+| Ctrl-D | Command-D | May be a browser default |
+| Ctrl-Tab | Command-Tab | May be a browser default |
+| Alt-Tab | Option-Tab | OS default|
+| Alt-Space | Option-Space | Possible OS default |
+
 
 
 <div id="btn-valid-markups"></div>

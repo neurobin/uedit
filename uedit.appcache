@@ -5,14 +5,14 @@ showinfo.html
 /Highlightjs/styles/github.css
 /bootstrap/css/bootstrap.min.css
 /font-awesome/css/font-awesome.min.css
-/script/myjs.min.js
+/script/myjs.js
 /uedit/scripts/src-noconflict/ace.js
 /uedit/scripts/src-noconflict/ext-language_tools.js
 /uedit/scripts/src-noconflict/mode-php.js
 /uedit/scripts/src-noconflict/ext-spellcheck.js
 /uedit/scripts/src-noconflict/theme-eclipse.js
 /uedit/scripts/src-noconflict/ext-searchbox.js
-/uedit/scripts/uedit.min.js
+/uedit/scripts/uedit.js
 /uedit/scripts/FileSaver.min.js
 /uedit/scripts/swfobject.js
 /uedit/scripts/downloadify.min.js
@@ -34,4 +34,4 @@ media/downloadify.swf
 /bootstrap/fonts/glyphicons-halflings-regular.ttf
 /bootstrap/fonts/glyphicons-halflings-regular.svg
 #Uedit Version: 0.2.2
-#Updated: 02:25PM 20-06-2015 Dhaka/Asia Time
+#Updated: 10:09PM 21-06-2015 BDT

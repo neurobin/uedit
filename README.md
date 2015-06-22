@@ -40,6 +40,8 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 <p>You can put your code snippet in the <code>start</code> and <code>end</code> boxes and insert them into editor by simply clicking on the corresponding button.</p>
 </li>
 <li>You can even put an entire file content into those two boxes and insert them anywhere in the editor by simple button click.</li>
+<li>To edit properties of a button, right click on that button and select <q>edit</q>.</li>
+<li>To delete a button, right click on that button and select <q>delete</q>.</li>
 </ol>
 
 <div id="tips"></div>
@@ -58,4 +60,7 @@ There are no mouse options for search/find/replace. You need to use keyboard sho
 <br>
 
 Use the <span class="button">SAVE TO DISK</span> button or keyboard shortcut (<kbd>Ctrl+S</kbd> in Windows/Linux and <kbd>command+S</kbd> in Mac) to save content.
+
+Set feasible keyboard shortcuts for your busy buttons to gain speed and productivity.
+
 
