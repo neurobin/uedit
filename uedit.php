@@ -112,26 +112,26 @@
 <p>Add Button</p>
 <table class="noborder"><tr><td>
 Lang: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30" class="input-dialog-input-field">
 </td></tr><tr><td>
 Start: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-start" placeholder="Start" value="" title="Start tag">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-start" placeholder="Start" value="" title="Start tag" class="input-dialog-input-field">
 </td></tr><tr><td>End: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-end" placeholder="End" value="" title="End tag">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-end" placeholder="End" value="" title="End tag" class="input-dialog-input-field">
 </td></tr><tr><td>Title: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-title" placeholder="Title" value="Custom Button" title="Title">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-title" placeholder="Title" value="Custom Button" title="Title" class="input-dialog-input-field">
 
 </td></tr><tr><td>Class: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)" class="input-dialog-input-field">
 </td></tr><tr><td><span title="Keyboard Shortcut">KBDS: </span></td><td>
-<select name="input-dialog-input-field" id="uedit-add-button-dialog-firstkey" title="First Modifier" class="uedit-skey-select">
-    <option value="" title="Blank">Unset</option>
+<select name="uedit-add-button-dialog" id="uedit-add-button-dialog-firstkey" title="First Modifier" class="input-dialog-input-field uedit-skey-select">
+    <option value="" title="Blank" selected="selected">Unset</option>
     <option value="Ctrl-" title="Ctrl">Ctrl</option>
     <option value="Alt-" title="Alt">Alt</option>
     <option value="Shift-" title="Shift">Shift</option>
 </select>
-<select name="input-dialog-input-field" id="uedit-add-button-dialog-secondkey" title="Second Modifier" class="uedit-skey-select">
-    <option value="" title="Blank">Unset</option>
+<select name="uedit-add-button-dialog" id="uedit-add-button-dialog-secondkey" title="Second Modifier" class="input-dialog-input-field uedit-skey-select">
+    <option value="" title="Blank" selected="selected">Unset</option>
     <option value="Ctrl-" title="Ctrl">Ctrl</option>
     <option value="Alt-" title="Alt">Alt</option>
     <option value="Shift-" title="Shift">Shift</option>
@@ -163,17 +163,17 @@ Start: </td><td>
     <option value="F12" title="F12">F12</option>
     
 </select>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-skey" placeholder="Key" value="" title="Shortcut Key" maxlength="1" class="uedit-skey-select">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-skey" placeholder="Key" value="" title="Shortcut Key" maxlength="1" class="input-dialog-input-field uedit-skey-select">
 </td></tr><tr><td>Name: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-add-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML Markup Allowed)" required="true">
+<input name="uedit-add-button-dialog" type="text" id="uedit-add-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML Markup Allowed)" required="true" class="input-dialog-input-field">
 <span class="glyphicon glyphicon-asterisk warning"></span>
 </td></tr><tr><td>Type: </td><td>
-<select name="input-dialog-input-field" id="uedit-add-button-dialog-type" title="Type of input box">
+<select name="uedit-add-button-dialog" id="uedit-add-button-dialog-type" title="Type of input box" class="input-dialog-input-field">
     <option value="input" title="Single Line Input">Text Field</option>
     <option value="textarea" title="Multi Line Input">Text Area</option>
 </select>
 </td></tr><tr><td>Position: </td><td>
-<input name="input-dialog-input-field" type="number" id="uedit-add-button-dialog-position" placeholder="Position" value="" title="Position index" min="0">
+<input name="uedit-add-button-dialog" type="number" id="uedit-add-button-dialog-position" placeholder="Position" value="" title="Position index" min="0" class="input-dialog-input-field">
 </td></tr>
 </table>
 <button id="uedit-add-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-add-button-dialog')">Close</button>
@@ -188,25 +188,25 @@ Start: </td><td>
 <p>Edit Button</p>
 <table class="noborder"><tr><td>
 Lang:</td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-lang" placeholder="Language/Section" value="html" title="Language/section name" maxlength="30" class="input-dialog-input-field">
 </td></tr><tr><td>Start: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-start" placeholder="Start" value="" title="Start tag">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-start" placeholder="Start" value="" title="Start tag" class="input-dialog-input-field">
 </td></tr><tr><td>End: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-end" placeholder="End" value="" title="End tag">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-end" placeholder="End" value="" title="End tag" class="input-dialog-input-field">
 </td></tr><tr><td>Title: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-title" placeholder="Title" value="Custom Button" title="Title">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-title" placeholder="Title" value="Custom Button" title="Title" class="input-dialog-input-field">
 
 </td></tr><tr><td>Class: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-class" placeholder="Class" value="" title="Class name (CSS)" class="input-dialog-input-field">
 </td></tr><tr><td><span title="Keyboard Shortcut">KBDS: </span></td><td>
 
-<select name="input-dialog-input-field" id="uedit-edit-button-dialog-firstkey" title="First Modifier" class="uedit-skey-select">
+<select name="uedit-edit-button-dialog" id="uedit-edit-button-dialog-firstkey" title="First Modifier" class="input-dialog-input-field uedit-skey-select">
     <option value="" title="Blank">Unset</option>
     <option value="Ctrl-" title="Ctrl">Ctrl</option>
     <option value="Alt-" title="Alt">Alt</option>
     <option value="Shift-" title="Shift">Shift</option>
 </select>
-<select name="input-dialog-input-field" id="uedit-edit-button-dialog-secondkey" title="Second Modifier" class="uedit-skey-select">
+<select name="uedit-edit-button-dialog" id="uedit-edit-button-dialog-secondkey" title="Second Modifier" class="input-dialog-input-field uedit-skey-select">
     <option value="" title="Blank">Unset</option>
     <option value="Ctrl-" title="Ctrl">Ctrl</option>
     <option value="Alt-" title="Alt">Alt</option>
@@ -238,18 +238,18 @@ Lang:</td><td>
     <option value="F11" title="F11">F11</option>
     <option value="F12" title="F12">F12</option>
 </select>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-skey" placeholder="Key" value="" title="Shortcut Key" maxlength="1" class="uedit-skey-select">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-skey" placeholder="Key" value="" title="Shortcut Key" maxlength="1" class="input-dialog-input-field uedit-skey-select">
 
 </td></tr><tr><td>Name: </td><td>
-<input name="input-dialog-input-field" type="text" id="uedit-edit-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML applicable)" required="true">
+<input name="uedit-edit-button-dialog" type="text" id="uedit-edit-button-dialog-innerhtml" placeholder="Button name" value="" title="Button name (HTML applicable)" required="true" class="input-dialog-input-field">
 <span class="glyphicon glyphicon-asterisk warning"></span>
 </td></tr><tr><td>Type: </td><td>
-<select name="input-dialog-input-field" id="uedit-edit-button-dialog-type" title="Type of input box">
+<select name="uedit-edit-button-dialog" id="uedit-edit-button-dialog-type" title="Type of input box" class="input-dialog-input-field">
     <option value="input" title="Single Line Input">Text Field</option>
     <option value="textarea" title="Multi Line Input">Text Area</option>
 </select>
 </td></tr><tr><td>Position: </td><td>
-<input name="input-dialog-input-field" type="number" id="uedit-edit-button-dialog-position" placeholder="Position" value="" title="Position index" min="0">
+<input name="uedit-edit-button-dialog" type="number" id="uedit-edit-button-dialog-position" placeholder="Position" value="" title="Position index" min="0" class="input-dialog-input-field">
 </td></tr>
 </table>
 <button id="uedit-edit-button-dialog-cancel-button" formnovalidate="true" onclick="itemGone('uedit-edit-button-dialog')">Close</button>

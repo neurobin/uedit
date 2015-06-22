@@ -24,6 +24,7 @@ a selected text, it will replace the text with <code>&lt;span class="quote"&gt;t
 <li>You can even put an entire file content into those two boxes and insert them anywhere in the editor by simple button click.</li>
 <li>To edit properties of a button, right click on that button and select <q>edit</q>.</li>
 <li>To delete a button, right click on that button and select <q>delete</q>.</li>
+<li>You can set keyboard shortcuts for your custom buttons. To set a keyboard shortcut for an existing button, right click on the button and fill the fileds marked by the name <span class="quote">KBDS</span>. The same applies for adding a new button too.</li>
 </ol>	
 
 <div id="kbd-shortcuts"><br></div>

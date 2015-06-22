@@ -103,10 +103,13 @@ else {return "";}
 
 
 function getInputDialogFieldsFromStorage() {
-var inputdialogfieldes=document.getElementsByName('input-dialog-input-field');
+var inputdialogfieldes=document.getElementsByName('uedit-add-button-dialog');
 for (var i=0;i<inputdialogfieldes.length;i++) {
 //if (localStorage.getItem("neurobin-uedit-"+inputdialogfieldes[i].id!="")) {
-inputdialogfieldes[i].value=getFromStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id);}//}
+	if (/\buedit\-skey\-select\b/i.test(inputdialogfieldes[i].className)==false) {
+inputdialogfieldes[i].value=getFromStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id);}
+else {inputdialogfieldes[i].value="";}
+}
 }
 
 
@@ -165,9 +168,10 @@ console.log(id+"="+value+"wasn't saved because local storage is unavailable");
 }
     
 function fillStorageFromInputDialogFields() {
-var inputdialogfieldes=document.getElementsByName('input-dialog-input-field');
+var inputdialogfieldes=document.getElementsByName('uedit-add-button-dialog');
     for (var i=0;i<inputdialogfieldes.length;i++) {
-fillStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id,inputdialogfieldes[i].value);}
+    	if (/\buedit\-skey\-select\b/i.test(inputdialogfieldes[i].className)==false) {
+fillStorageByAbsoluteId("neurobin-uedit-"+inputdialogfieldes[i].id,inputdialogfieldes[i].value);}}
 
 }
 function removeItemFromStorageByAbsoluteId(id){
@@ -350,6 +354,7 @@ function createButtonFromAnyJSON(jsonstring,parentId,lang,classname){
     element.id=lang+"-btn"+i;}
     else {element.id=array[i].id;}
     element.title=array[i].title;
+    if (array[i].winskey!="") {element.title+=" **KBDS [  W/L:  "+array[i].winskey+"   Mac:  "+array[i].macskey+"  ]**";}
     array[i].id=element.id;
     json=JSON.stringify(obj);
     fillStorageByAbsoluteId('neurobin-uedit-json',json);
@@ -513,10 +518,10 @@ return msg;
 
 
 function validateForm(formId,parentId,task){
-var inputfields=document.getElementsByName("input-dialog-input-field");
+var inputfields=document.getElementsByName(formId);
+console.log(inputfields[0]);
 for(var i=0;i<inputfields.length;i++){
 if (inputfields[i].checkValidity()==false) {
-
 var head="<span class=\"error\">Invalid input!!</span>";
 var msg="Define "+inputfields[i].title+" correctly";
 openMessageDialog(head,msg);
