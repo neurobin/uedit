@@ -44,7 +44,7 @@
 						<a href="https://github.com/neurobin/uedit">View On Github</a>
 						<a href="https://github.com/neurobin/uedit/archive/master.zip">Download .zip</a>
 						<a href="https://github.com/neurobin/uedit/archive/master.tar.gz">Download .tar.gz</a>
-<a href="uedit/uedit.php">Editor</a>
+<a href="uedit/uedit.php">Go Edit</a>
 <a href="uedit/showinfo.php">More Info</a>
 					</div>
 				</div>
