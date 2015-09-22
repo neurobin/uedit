@@ -1,5 +1,8 @@
 This is a tiny attempt to develop a Universal Text Editor.
 
+<div id="screenshots"></div>
+#Screenshots:
+<img class="full-width-img"  alt="screenshot1.png" src="uedit/images/screenshot1.png" />
 
 #Features Available:
 
@@ -15,6 +18,12 @@ This is a tiny attempt to develop a Universal Text Editor.
 
 <li>Buttons are customizable (create and delete).</li>
 </ol>
+
+<div id="install"></div>
+#Install:
+
+It doesn't require any special installation method. It resides on your browser. You just need to visit the page <a href="uedit/uedit.php">Go Edit</a> and let the necessary files (~1MB) be downloaded just once. You will then be able to use it offline when all of it's requirements are cached in the browser.
+
 <div id="usage"></div>
 #Usage:
 The salient feature is the custom buttons. A custom button can be defined to do various types of text manipulation.
@@ -64,4 +73,8 @@ Use the <span class="button">SAVE TO DISK</span> button or keyboard shortcut (<k
 
 Set feasible keyboard shortcuts for your busy buttons to gain speed and productivity.
 
+#Things to care:
+
+1. The <span class="button">SAVE TO DISK</span> button requires Flash. Either enable Flash or use the alternative Keyboard Shortcut <kbd>Ctrl+S</kbd>.
+2. If you want to update the App, you will need to delete the cache (and/or cookie) from your browser. In Firefox you can delete cache selectively only for this app from <span class="light-quote">Preference->Advanced->Offline Web Content and User Data</span>.
 
